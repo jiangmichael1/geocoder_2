@@ -3,7 +3,7 @@
 This is my second attempt at creating a geocoder application for NYC DoT internship. 
 
 
-# Tools to Implement
+## Tools to Implement
 
 - **SheetJS**: To read and organize the imported XLSX file
 - **HotTable**: For displaying an Excel table of imported data
