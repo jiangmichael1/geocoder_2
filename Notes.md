@@ -38,4 +38,5 @@
     - Maybe find a library for queueing? -> Check Zhi's code
 
 *4/10/23*
--  Restarted the app after realizing that it was too messy having start without guidance
+- Restarted the app after realizing that it was too messy having start without guidance
+- Working on importing Excel file and storing each row as a state at the top level
