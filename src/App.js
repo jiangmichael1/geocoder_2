@@ -13,11 +13,6 @@ registerAllModules();
 
 class App extends Component {
   state = {
-    file: null,
-    header: [],
-    body: [],
-    results: [],
-
     // Imported file data
     fileName: '',
     fileHeader: {},
@@ -38,7 +33,6 @@ class App extends Component {
     firstCrossStreet: "Saunders"
   }
 
-  
   // Change imported file's header state when file imports
   importHeader = (header) => {
     this.setState({fileHeader: header})
@@ -57,7 +51,7 @@ class App extends Component {
     const f1B_url = this.state.baseURL + "function_1B?Borough=" + this.state.borough + "&AddressNo=" + this.state.addressNum + "&StreetName=" + this.state.streetName + "&Key=" + key
     const f3_url = this.state.baseURL + "function_3S?Borough1=" + this.state.borough1 + "&OnStreet=" + this.state.onStreet + "&SecondCrossStreet=" + this.state.secondCrossStreet + "&Borough2=" + this.state.borough2 + "&FirstCrossStreet=" + this.state.firstCrossStreet + "&Borough3=" + this.state.borough3 + "&key=" + key
     
-    const response = await axios
+    /*const response = await axios
       .get(proxy + f1B_url)
       .catch((err) => {
           console.log("Err", err)
@@ -66,6 +60,7 @@ class App extends Component {
         console.log(response)
       })
     };
+    */
   }
 
   render()
@@ -97,7 +92,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-

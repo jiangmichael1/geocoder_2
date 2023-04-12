@@ -1,6 +1,12 @@
 import React from 'react';
 import * as XLSX from "xlsx";
 
+/* 
+ParseExcel does the following:
+1. Displays an import file button and allows file uploading
+2. Creates the header information for HotTable using the first index of the file
+3. Creates the body information for HotTable
+*/
 const parseExcel = (props) => {
 
     const handleFile = async (e) => {
@@ -13,7 +19,7 @@ const parseExcel = (props) => {
         const fileFull = XLSX.utils.sheet_to_json(worksheet, {
             header: 1,
             defval: "",
-        } )
+        })
 
         console.log(fileFull)
         props.importHeader(fileFull[0])

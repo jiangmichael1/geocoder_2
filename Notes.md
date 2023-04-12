@@ -38,5 +38,9 @@
     - Maybe find a library for queueing? -> Check Zhi's code
 
 *4/10/23*
-- Restarted the app after realizing that it was too messy having start without guidance
-- Working on importing Excel file and storing each row as a state at the top level
+- Restarted the app after realizing that it was too messy having started without guidance
+- Working on importing Excel file and storing each row as a state at the top level -> Done
+- Create header and body for Excel display
+- Able to read imported file and edit each cell
+- Configuring fetch request to take parameters from state (not hardcoded anymore)
+- Next steps: Figure out how to query each row as a separate fetch request
