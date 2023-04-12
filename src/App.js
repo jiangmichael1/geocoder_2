@@ -2,6 +2,7 @@ import './App.css';
 import React, { UseEffect, Component } from 'react';
 import ParseExcel from './Import/parseExcel';
 import axios from 'axios';
+import GeoserviceCaller from './Helpers/geoserviceCaller';
 
 // Hot Table Imports
 import 'handsontable/dist/handsontable.full.min.css';
@@ -44,13 +45,7 @@ class App extends Component {
   }
 
   fetchRequest = async () => {
-    const proxy = "https://cors-anywhere.herokuapp.com/";
-    const baseURL = "https://geoservice.planning.nyc.gov/geoservice/geoservice.svc/"
-    const key = "r4u7xXABDHG7JaNd";
-    
-    const f1B_url = this.state.baseURL + "function_1B?Borough=" + this.state.borough + "&AddressNo=" + this.state.addressNum + "&StreetName=" + this.state.streetName + "&Key=" + key
-    const f3_url = this.state.baseURL + "function_3S?Borough1=" + this.state.borough1 + "&OnStreet=" + this.state.onStreet + "&SecondCrossStreet=" + this.state.secondCrossStreet + "&Borough2=" + this.state.borough2 + "&FirstCrossStreet=" + this.state.firstCrossStreet + "&Borough3=" + this.state.borough3 + "&key=" + key
-    
+  
     /*const response = await axios
       .get(proxy + f1B_url)
       .catch((err) => {
@@ -68,6 +63,13 @@ class App extends Component {
     console.log(this.state.fileHeader)
     console.log(this.state.fileBody)
 
+    const proxy = "https://cors-anywhere.herokuapp.com/";
+    const baseURL = "https://geoservice.planning.nyc.gov/geoservice/geoservice.svc/"
+    const key = "r4u7xXABDHG7JaNd";
+    
+    const f1B_url = this.state.baseURL + "function_1B?Borough=" + this.state.borough + "&AddressNo=" + this.state.addressNum + "&StreetName=" + this.state.streetName + "&Key=" + key
+    const f3_url = this.state.baseURL + "function_3S?Borough1=" + this.state.borough1 + "&OnStreet=" + this.state.onStreet + "&SecondCrossStreet=" + this.state.secondCrossStreet + "&Borough2=" + this.state.borough2 + "&FirstCrossStreet=" + this.state.firstCrossStreet + "&Borough3=" + this.state.borough3 + "&key=" + key
+    
     return (
       <div className="App">
         <h1>Geocoder</h1>
@@ -85,7 +87,17 @@ class App extends Component {
           rowHeaders = {false}
           colHeaders = {this.state.fileHeader}
           height="auto"
-          licenseKey="non-commercial-and-evaluation" />
+          licenseKey="non-commercial-and-evaluation" 
+        />
+
+        <GeoserviceCaller 
+          proxy = {proxy}
+          baseURL = {baseURL}
+          key = {key}
+          f1B_url = {f1B_url}
+          f3_url = {f3_url}
+        />
+
       </div>
     );
   }
