@@ -7,12 +7,16 @@ Geoservice Caller does the following:
 1. Receives the state, which the is user uploaded file's content body
 2. Takes one row and uses that row's information to create parameters for the geoservice call request
 3. It makes the call request, obtains the data, and then sends it back to App
+
+Blockers:
+Stuck on sending the data back to App without creating an infinite loop
 */
 
 
 
-// Mocked data
+
 const geoserviceCaller = (props) => {
+    // Mocked data
     const response = {
         "data": {
         "display": {
@@ -276,10 +280,10 @@ const geoserviceCaller = (props) => {
         },
         "request": {}
     }
-    
-    const data = response.data.display
-    const dataArray = Object.entries(data)
-    QueryHelper(dataArray)
+
+    const dataArray = Object.entries(response.data.display)
+    console.log(dataArray)
+   
     
 }
 

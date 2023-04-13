@@ -47,8 +47,9 @@ class App extends Component {
     this.setState({fileBody: body})
   }
 
-  storeQuery = (query) => {
-    this.setState({queryStorage: query})
+  // Stores the queried data into the current state
+  queryStorage = (data) => {
+    this.setState({queryStorage: data})
   }
 
   render()
@@ -64,10 +65,8 @@ class App extends Component {
       <div className="App">
         <h1>Geocoder</h1>
         <p>Please select a file to geocode:</p>
+
         <ParseExcel 
-          fileName={this.state.fileName} 
-          fileHeader={this.state.fileHeader} 
-          fileBody={this.state.fileBody} 
           importHeader={this.importHeader}
           importBody={this.importBody}
         />

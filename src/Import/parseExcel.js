@@ -22,11 +22,12 @@ const parseExcel = (props) => {
             defval: "",
         })
 
-        console.log(fileFull)
+        // Sets state for the header and body
         props.importHeader(fileFull[0])
         const fileBody = fileFull.map((item) => item)
         fileBody.shift()
         props.importBody(fileBody)
+        console.log(fileBody)
 
     }
 
