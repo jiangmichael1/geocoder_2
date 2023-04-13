@@ -1,7 +1,7 @@
 import './App.css';
 import React, { UseEffect, Component } from 'react';
-import ParseExcel from './Import/parseExcel';
 import axios from 'axios';
+import ParseExcel from './Import/parseExcel';
 import GeoserviceCaller from './Helpers/geoserviceCaller';
 
 // Hot Table Imports
@@ -18,6 +18,9 @@ class App extends Component {
     fileName: '',
     fileHeader: {},
     fileBody: {},
+
+    //Query Results: Contains each query as an array 
+    queryStorage: [],
 
     // Data (string) specific to Function 1B Call
     // For Boroughs: ‘1’ = Manhattan, ‘2’ = Bronx, ‘3’ = Brooklyn, ‘4’ = Queens, ‘5’ = Staten Island
@@ -44,18 +47,8 @@ class App extends Component {
     this.setState({fileBody: body})
   }
 
-  fetchRequest = async () => {
-  
-    /*const response = await axios
-      .get(proxy + f1B_url)
-      .catch((err) => {
-          console.log("Err", err)
-      })
-      .then((res) => {
-        console.log(response)
-      })
-    };
-    */
+  storeQuery = (query) => {
+    this.setState({queryStorage: query})
   }
 
   render()
@@ -67,8 +60,8 @@ class App extends Component {
     const baseURL = "https://geoservice.planning.nyc.gov/geoservice/geoservice.svc/"
     const key = "r4u7xXABDHG7JaNd";
     
-    const f1B_url = this.state.baseURL + "function_1B?Borough=" + this.state.borough + "&AddressNo=" + this.state.addressNum + "&StreetName=" + this.state.streetName + "&Key=" + key
-    const f3_url = this.state.baseURL + "function_3S?Borough1=" + this.state.borough1 + "&OnStreet=" + this.state.onStreet + "&SecondCrossStreet=" + this.state.secondCrossStreet + "&Borough2=" + this.state.borough2 + "&FirstCrossStreet=" + this.state.firstCrossStreet + "&Borough3=" + this.state.borough3 + "&key=" + key
+    const f1B_url = baseURL + "function_1B?Borough=" + this.state.borough + "&AddressNo=" + this.state.addressNum + "&StreetName=" + this.state.streetName + "&Key=" + key
+    const f3_url = baseURL + "function_3S?Borough1=" + this.state.borough1 + "&OnStreet=" + this.state.onStreet + "&SecondCrossStreet=" + this.state.secondCrossStreet + "&Borough2=" + this.state.borough2 + "&FirstCrossStreet=" + this.state.firstCrossStreet + "&Borough3=" + this.state.borough3 + "&key=" + key
     
     return (
       <div className="App">
@@ -96,6 +89,9 @@ class App extends Component {
           key = {key}
           f1B_url = {f1B_url}
           f3_url = {f3_url}
+          queryRequest = {this.importBody}
+          queryStorage = {this.state.queryStorage}
+          storeQuery = {this.storeQuery}
         />
 
       </div>
@@ -104,3 +100,7 @@ class App extends Component {
 }
 
 export default App;
+
+/*
+  1. Add second HotTable for Geocoded results
+*/

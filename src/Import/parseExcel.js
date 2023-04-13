@@ -7,6 +7,7 @@ ParseExcel does the following:
 2. Creates the header information for HotTable using the first index of the file
 3. Creates the body information for HotTable
 */
+
 const parseExcel = (props) => {
 
     const handleFile = async (e) => {
