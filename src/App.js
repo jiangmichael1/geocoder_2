@@ -53,9 +53,6 @@ class App extends Component {
 
   render()
   {
-    console.log(this.state.fileHeader)
-    console.log(this.state.fileBody)
-
     const proxy = "https://cors-anywhere.herokuapp.com/";
     const baseURL = "https://geoservice.planning.nyc.gov/geoservice/geoservice.svc/"
     const key = "r4u7xXABDHG7JaNd";
@@ -90,7 +87,6 @@ class App extends Component {
           f1B_url = {f1B_url}
           f3_url = {f3_url}
           queryRequest = {this.importBody}
-          queryStorage = {this.state.queryStorage}
           storeQuery = {this.storeQuery}
         />
 

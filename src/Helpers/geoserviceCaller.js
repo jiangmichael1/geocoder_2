@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { UseEffect } from 'react';
-import QueryHelper from "./queryHelper";
+import React, { UseEffect, Component } from 'react';
+import { QueryHelper } from "./queryHelper";
 
 /* 
 Geoservice Caller does the following:
@@ -9,19 +9,21 @@ Geoservice Caller does the following:
 3. It makes the call request, obtains the data, and then sends it back to App
 */
 
+
+
 // Mocked data
 const geoserviceCaller = (props) => {
     const response = {
         "data": {
-          "display": {
+        "display": {
             "AddressRangeKeys": [
-              {
+            {
                 "Key": "",
                 "Value": "Ordinary Address Range"
-              }
+            }
             ],
             "AddressRangeList": [
-              {
+            {
                 "b7sc": "46149001",
                 "bin": "4071973",
                 "high_address_number": "           61-40",
@@ -30,25 +32,25 @@ const geoserviceCaller = (props) => {
                 "tpad_bin_status": "N/A",
                 "type": " ",
                 "type_meaning": "Ordinary Address Range"
-              }
+            }
             ],
             "CompleteBINList": [
-              {
+            {
                 "bin": "4071973",
                 "tpad": null
-              }
+            }
             ],
             "HighB7SCList": [
-              {
+            {
                 "b7sc": "41279001",
                 "streetName": "  62 AVENUE                     "
-              }
+            }
             ],
             "LowB7SCList": [
-              {
+            {
                 "b7sc": "44349001",
                 "streetName": "ELIOT AVENUE                    "
-              }
+            }
             ],
             "SimilarNamesList": [],
             "in_boro": "4",
@@ -226,59 +228,61 @@ const geoserviceCaller = (props) => {
             "out_y_coord": "0205790",
             "out_y_coord_property": "0205630",
             "out_zip_code": "11374"
-          },
-          "root": null
+        },
+        "root": null
         },
         "status": 200,
         "statusText": "OK",
         "headers": {
-          "access-control-allow-origin": "*",
-          "cache-control": "private",
-          "connection": "keep-alive",
-          "content-length": "5893",
-          "content-type": "application/json; charset=utf-8",
-          "date": "Thu, 13 Apr 2023 20:44:30 GMT",
-          "server": "Microsoft-IIS/10.0",
-          "x-aspnet-version": "4.0.30319",
-          "x-final-url": "https://geoservice.planning.nyc.gov/geoservice/geoservice.svc/function_1B?Borough=4&AddressNo=6140&StreetName=Saunders%20Street&Key=r4u7xXABDHG7JaNd",
-          "x-powered-by": "ASP.NET"
+        "access-control-allow-origin": "*",
+        "cache-control": "private",
+        "connection": "keep-alive",
+        "content-length": "5893",
+        "content-type": "application/json; charset=utf-8",
+        "date": "Thu, 13 Apr 2023 20:44:30 GMT",
+        "server": "Microsoft-IIS/10.0",
+        "x-aspnet-version": "4.0.30319",
+        "x-final-url": "https://geoservice.planning.nyc.gov/geoservice/geoservice.svc/function_1B?Borough=4&AddressNo=6140&StreetName=Saunders%20Street&Key=r4u7xXABDHG7JaNd",
+        "x-powered-by": "ASP.NET"
         },
         "config": {
-          "transitional": {
+        "transitional": {
             "silentJSONParsing": true,
             "forcedJSONParsing": true,
             "clarifyTimeoutError": false
-          },
-          "adapter": [
+        },
+        "adapter": [
             "xhr",
             "http"
-          ],
-          "transformRequest": [
+        ],
+        "transformRequest": [
             null
-          ],
-          "transformResponse": [
+        ],
+        "transformResponse": [
             null
-          ],
-          "timeout": 0,
-          "xsrfCookieName": "XSRF-TOKEN",
-          "xsrfHeaderName": "X-XSRF-TOKEN",
-          "maxContentLength": -1,
-          "maxBodyLength": -1,
-          "env": {},
-          "headers": {
+        ],
+        "timeout": 0,
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN",
+        "maxContentLength": -1,
+        "maxBodyLength": -1,
+        "env": {},
+        "headers": {
             "Accept": "application/json, text/plain, */*",
             "Content-Type": null
-          },
-          "method": "get",
-          "url": "https://cors-anywhere.herokuapp.com/https://geoservice.planning.nyc.gov/geoservice/geoservice.svc/function_1B?Borough=4&AddressNo=6140&StreetName=Saunders Street&Key=r4u7xXABDHG7JaNd"
+        },
+        "method": "get",
+        "url": "https://cors-anywhere.herokuapp.com/https://geoservice.planning.nyc.gov/geoservice/geoservice.svc/function_1B?Borough=4&AddressNo=6140&StreetName=Saunders Street&Key=r4u7xXABDHG7JaNd"
         },
         "request": {}
-      }
+    }
     
     const data = response.data.display
-    const dataArray = Object.entries(data).map((query) => query)
-    console.log(dataArray)
+    const dataArray = Object.entries(data)
+    QueryHelper(dataArray)
+    
 }
+
 
 /*
 const geoserviceCaller = (props) => {

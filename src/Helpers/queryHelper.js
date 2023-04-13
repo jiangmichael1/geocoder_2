@@ -8,8 +8,9 @@ This is repeated until all rows have been fetched.
 
 import React, { Component } from 'react';
 
-const QueryHelper = (props) => {
-    console.log(props) 
+export function QueryHelper(queriedData){
+    console.log(queriedData)
+
+    queriedData.forEach((row) => console.log(row))
 }
 
-export default QueryHelper;

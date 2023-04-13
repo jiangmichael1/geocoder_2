@@ -49,4 +49,4 @@
 
 *4/12/23*
 - Axios working to make the Get request 
-- Working on queryHelper
+- Working on queryHelper -> Having an issue where passing the data array retrieved from the request causes an endless loop
