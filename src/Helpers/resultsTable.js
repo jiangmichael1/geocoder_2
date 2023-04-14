@@ -1,5 +1,4 @@
 import React from 'react';
-import * as XLSX from "xlsx";
 
 /*
 ResultsTable receives a prop that is an object. 

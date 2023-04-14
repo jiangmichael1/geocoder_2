@@ -28,12 +28,16 @@ const parseExcel = (props) => {
         fileBody.shift()
         props.importBody(fileBody)
         console.log(fileBody)
+    }
 
+    // queryAgent function takes the data and spits out one row at a time
+    const queryAgent = (data) => {
+        data.forEach((row) => console.log(row))
     }
 
     return (
         <div>    
-            <input type="file" onChange={(e) => handleFile(e)} />
+            <input type="file" onChange={(e) => handleFile(e)}  />
             {props.fileName && (
                 <p className="import_file">FileName: <span>{props.fileName}</span></p>
             )}

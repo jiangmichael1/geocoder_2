@@ -9,7 +9,8 @@ Geoservice Caller does the following:
 3. It makes the call request, obtains the data, and then sends it back to App
 
 Blockers:
-Stuck on sending the data back to App without creating an infinite loop
+Stuck on sending the data back to App without creating an infinite loop because 
+geoserviceCaller rerenders upon receiving information, and when it rerenders, it sends info again
 */
 
 
@@ -282,9 +283,6 @@ const geoserviceCaller = (props) => {
     }
 
     const dataArray = Object.entries(response.data.display)
-    console.log(dataArray)
-   
-    
 }
 
 
