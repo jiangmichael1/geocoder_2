@@ -11,10 +11,17 @@ Geoservice Caller does the following:
 Blockers:
 Stuck on sending the data back to App without creating an infinite loop because 
 geoserviceCaller rerenders upon receiving information, and when it rerenders, it sends info again
+Figure out how to use componentDidUpdate or componentDidMount (What is the difference?)
+
+1. Use Promises <- Figure out what that is
+    - https://www.newline.co/fullstack-react/30-days-of-react/day-15/
+2. Local APIs <- creating a temporary local api to store data instead of remaking the call (hence, query storage)
+
+3. DOM Buffering React Table, show specific parts of the table <- Since each query will have 100+ columns, only the main ones should display until user selects more
+    - https://levelup.gitconnected.com/how-to-render-your-lists-faster-with-react-virtualization-5e327588c910
+4. Pagination on the rows <- another option is to paginate in order to reduce load time. Zhi had the issue with only loading up to 1000 rows before the browser started to lag, paginating would fix this 
+    - https://www.npmjs.com/package/@pagination/xlsx
 */
-
-
-
 
 const geoserviceCaller = (props) => {
     // Mocked data
@@ -282,7 +289,24 @@ const geoserviceCaller = (props) => {
         "request": {}
     }
 
-    const dataArray = Object.entries(response.data.display)
+    // const dataArray = Object.entries(response.data.display)
+
+    function getCurrentData(res) {
+        return new Promise((resolve, reject) => {
+            setTimeout(function() {
+                // Run tests on the data that is fetched
+                const didSucceed = response !== null
+                didSucceed ? resolve(res) : reject('Error');
+            }, 100)
+        })
+    }
+    getCurrentData(response)
+        .then(currentData => getCurrentData(response))
+        .then(currentData => {
+            console.log('The finalized array is the following: ' + currentData);
+            return true;
+        })
+        .catch(err => console.log('There was an error: '+ err))
 }
 
 
