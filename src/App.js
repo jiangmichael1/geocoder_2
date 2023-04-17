@@ -9,6 +9,7 @@ import 'handsontable/dist/handsontable.full.min.css';
 import Handsontable from 'handsontable/base';
 import { registerAllModules } from 'handsontable/registry';
 import { HotTable } from '@handsontable/react';
+import QueryHelper from './Helpers/queryHelper';
 
 registerAllModules();
 
@@ -48,9 +49,9 @@ class App extends Component {
   }
 
   // Stores the queried data into the current state
-  queryStorage = (data) => {
+  // queryStorage = (data) => {
 
-  }
+  // }
 
   render()
   {
@@ -96,6 +97,10 @@ class App extends Component {
           f3_url = {f3_url}
           queryRequest = {this.importBody}
           queryStorage = {this.queryStorage}
+        />
+
+        <QueryHelper 
+          data={this.state.fileBody} 
           onChange = {this.queryStorage}
         />
 

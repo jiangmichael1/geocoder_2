@@ -27,12 +27,6 @@ const parseExcel = (props) => {
         const fileBody = fileFull.map((item) => item)
         fileBody.shift()
         props.importBody(fileBody)
-        console.log(fileBody)
-    }
-
-    // queryAgent function takes the data and spits out one row at a time
-    const queryAgent = (data) => {
-        data.forEach((row) => console.log(row))
     }
 
     return (

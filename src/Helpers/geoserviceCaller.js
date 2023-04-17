@@ -291,22 +291,6 @@ const geoserviceCaller = (props) => {
 
     // const dataArray = Object.entries(response.data.display)
 
-    function getCurrentData(res) {
-        return new Promise((resolve, reject) => {
-            setTimeout(function() {
-                // Run tests on the data that is fetched
-                const didSucceed = response !== null
-                didSucceed ? resolve(res) : reject('Error');
-            }, 100)
-        })
-    }
-    getCurrentData(response)
-        .then(currentData => getCurrentData(response))
-        .then(currentData => {
-            console.log('The finalized array is the following: ' + currentData);
-            return true;
-        })
-        .catch(err => console.log('There was an error: '+ err))
 }
 
 
