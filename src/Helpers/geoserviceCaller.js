@@ -288,11 +288,31 @@ const geoserviceCaller = (props) => {
         },
         "request": {}
     }
-
+    
+    const promise = new Promise((resolve, reject) => {
+        const res = props.data;
+        if (requestQuery) {
+            resolve(requestQuery.forEach((dataRow) => console.log(dataRow)))
+        } else {
+            reject(Error('No data yet'))
+        }
+    })
+    
     // const dataArray = Object.entries(response.data.display)
+    
+    /*
+        Psuedocode:
+        queryHelper(body of data) 
+            For each row of data, make a fetch request
+            Upon successfully resolving request, go on to next row
 
+        Using Promises:
+            Promise of request success
+                then receive json data and work with the data
+            Request Failure
+                then display error
+    */
 }
-
 
 /*
 const geoserviceCaller = (props) => {

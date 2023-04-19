@@ -96,13 +96,11 @@ class App extends Component {
           f1B_url = {f1B_url}
           f3_url = {f3_url}
           queryRequest = {this.importBody}
-          queryStorage = {this.queryStorage}
+          queryStorage = {this.state.queryStorage}
+          data = {this.state.fileBody}
         />
 
-        <QueryHelper 
-          data={this.state.fileBody} 
-          onChange = {this.queryStorage}
-        />
+        
 
       </div>
     );
