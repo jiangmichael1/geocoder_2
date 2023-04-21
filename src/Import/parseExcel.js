@@ -27,11 +27,12 @@ const parseExcel = (props) => {
         const fileBody = fileFull.map((item) => item)
         fileBody.shift()
         props.importBody(fileBody)
+        props.importStatus(true)
     }
 
     return (
         <div>    
-            <input type="file" onChange={(e) => handleFile(e)}  />
+            <input type="file" onChange={(e) => handleFile(e)}   />
             {props.fileName && (
                 <p className="import_file">FileName: <span>{props.fileName}</span></p>
             )}

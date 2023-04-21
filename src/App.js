@@ -47,24 +47,14 @@ class App extends Component {
   importBody = (body) => {
     this.setState({fileBody: body})
   }
- 
+
+  importStatus = (bool) => {
+    this.setState({fileUploaded: bool})
+  }
+
   render()
   {
-    const proxy = "https://cors-anywhere.herokuapp.com/";
-    const baseURL = "https://geoservice.planning.nyc.gov/geoservice/geoservice.svc/"
-    const key = "r4u7xXABDHG7JaNd";
     
-    const f1B_url = baseURL + "function_1B?Borough=" + 
-                    this.state.borough + "&AddressNo=" + 
-                    this.state.addressNum + "&StreetName=" + 
-                    this.state.streetName + "&Key=" + key
-    const f3_url = baseURL + "function_3S?Borough1=" + 
-                    this.state.borough1 + "&OnStreet=" + 
-                    this.state.onStreet + "&SecondCrossStreet=" + 
-                    this.state.secondCrossStreet + "&Borough2=" + 
-                    this.state.borough2 + "&FirstCrossStreet=" + 
-                    this.state.firstCrossStreet + "&Borough3=" + 
-                    this.state.borough3 + "&key=" + key
     
     return (
       <div className="App">
@@ -74,6 +64,7 @@ class App extends Component {
         <ParseExcel 
           importHeader={this.importHeader}
           importBody={this.importBody}
+          importStatus={this.importStatus}
         />
 
         <HotTable
@@ -85,15 +76,16 @@ class App extends Component {
         />
 
         <GeoserviceCaller 
-          proxy = {proxy}
-          baseURL = {baseURL}
-          key = {key}
-          f1B_url = {f1B_url}
-          f3_url = {f3_url}
           queryRequest = {this.importBody}
           queryStorage = {this.state.queryStorage}
           data = {this.state.fileBody}
           fileUploaded = {this.state.fileUploaded}
+          assignBorough = {this.queryBorough}
+          assignAddressNum = {this.queryAddressNum}
+          assignStreetName = {this.queryStreetName}
+          borough = {this.state.borough}
+          addressNum = {this.state.addressNum}
+          streetName = {this.state.streetName}
         />
 
       </div>
