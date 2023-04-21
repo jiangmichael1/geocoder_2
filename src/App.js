@@ -9,7 +9,6 @@ import 'handsontable/dist/handsontable.full.min.css';
 import Handsontable from 'handsontable/base';
 import { registerAllModules } from 'handsontable/registry';
 import { HotTable } from '@handsontable/react';
-import QueryHelper from './Helpers/queryHelper';
 
 registerAllModules();
 
@@ -19,6 +18,7 @@ class App extends Component {
     fileName: '',
     fileHeader: {},
     fileBody: {},
+    fileUploaded: false,
 
     //Query Results: Contains each query as an array 
     queryStorage: [],
@@ -47,12 +47,7 @@ class App extends Component {
   importBody = (body) => {
     this.setState({fileBody: body})
   }
-
-  // Stores the queried data into the current state
-  // queryStorage = (data) => {
-
-  // }
-
+ 
   render()
   {
     const proxy = "https://cors-anywhere.herokuapp.com/";
@@ -98,9 +93,8 @@ class App extends Component {
           queryRequest = {this.importBody}
           queryStorage = {this.state.queryStorage}
           data = {this.state.fileBody}
+          fileUploaded = {this.state.fileUploaded}
         />
-
-        
 
       </div>
     );

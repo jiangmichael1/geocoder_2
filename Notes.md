@@ -51,4 +51,12 @@
 - Axios working to make the Get request 
 - Working on queryHelper -> Having an issue where passing the data array retrieved from the request causes an endless loop 
 - Built out a helper method to create another table with the queried info
-- 
+
+*4/14/23*
+- Stuck on figuring out how to fix the endless loop/rerendering
+
+*4/17/23*
+- Spoke with Zhi, informed me of promises, paginating, and DOM buffering as tips to make it work
+
+*4/19/23*
+- Working on the fetch request with the querying

@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { UseEffect, Component } from 'react';
-import { QueryHelper } from "./queryHelper";
+
 
 /* 
 Geoservice Caller does the following:
-1. Receives the state, which the is user uploaded file's content body
+1. Receives the state, which the is user uploaded file's content body/data
+2. Break the data up into rows
 2. Takes one row and uses that row's information to create parameters for the geoservice call request
 3. It makes the call request, obtains the data, and then sends it back to App
 
@@ -288,18 +289,8 @@ const geoserviceCaller = (props) => {
         },
         "request": {}
     }
-    
-    const promise = new Promise((resolve, reject) => {
-        const res = props.data;
-        if (requestQuery) {
-            resolve(requestQuery.forEach((dataRow) => console.log(dataRow)))
-        } else {
-            reject(Error('No data yet'))
-        }
-    })
-    
-    // const dataArray = Object.entries(response.data.display)
-    
+    console.log(props.data)
+   
     /*
         Psuedocode:
         queryHelper(body of data) 
