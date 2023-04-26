@@ -1,7 +1,12 @@
 import axios from "axios"
 import React, { useEffect, Component } from 'react'
 
+import 'handsontable/dist/handsontable.full.min.css';
+import Handsontable from 'handsontable/base';
+import { registerAllModules } from 'handsontable/registry';
+import { HotTable } from '@handsontable/react';
 
+registerAllModules();
 /* 
 Geoservice Caller does the following:
 1. Receives the state, which the is user uploaded file's content body/data
@@ -50,8 +55,8 @@ const geoserviceCaller = (props) => {
         if (props.fileUploaded !== false){
             const excelBody = props.data
             excelBody.forEach((row) => {
-                let f1B_url = baseURL + "function_1B?Borough=" + row[1] + "&AddressNo=" + 
-                row[0] + "&StreetName=" + row[2] + "&Key=" + key    
+                let f1B_url = baseURL + "function_1B?Borough=" + row[2] + "&AddressNo=" + 
+                row[0] + "&StreetName=" + row[1] + "&Key=" + key    
                 const fetchData = async () => {
                     const response = await axios 
                     .get(proxy + f1B_url)
@@ -59,6 +64,23 @@ const geoserviceCaller = (props) => {
                         console.log("Request Error", err)
                     })
                     console.log(response.data.display)
+                    return (
+                        <HotTable
+                            data={response.data.display}
+                            rowHeaders = {false}
+                            colHeaders = {false}
+                            height="auto"
+                            licenseKey="non-commercial-and-evaluation" 
+                        />
+                    )
+                    /* The first row of data is all headers:
+                        - The first time this runs, it will bring back fetch request w/ data.
+                        - Need to split the data into key/values
+                        - On the 1st iteration, set state for the keys as headers
+                        - On the 1st iteration, set state for the values as body
+                        - On the 2nd iteration, append to state for the values only
+                        - On the 3rd iteration, same as above, and so on until all requests are made
+                    */
                 } 
 
                 useEffect(() => {
@@ -71,6 +93,28 @@ const geoserviceCaller = (props) => {
     }
 
     geocodeQuery(props.data)
+
+    /* const handleRequest = () => {
+        const request = e.target.data[0];
+        const data = request.arrayBuffer();
+        const workbook = XLSX.read(data)
+        const worksheet = workbook.Sheets[workbook.SheetNames[0]]
+        
+        // Makes the first array contain all headers and the rest of the arrays have the values
+        const fileFull = XLSX.utils.sheet_to_json(worksheet, {
+            header: 1,
+            defval: "",
+        })
+
+        // Sets state for the header and body
+        props.importHeader(fileFull[0])
+        const fileBody = fileFull.map((item) => item)
+        fileBody.shift()
+        props.importBody(fileBody)
+        props.importStatus(true)
+    } */
+
+
     /*
         Psuedocode:
         queryHelper(body of data) 

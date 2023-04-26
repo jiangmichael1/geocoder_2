@@ -19,6 +19,9 @@ class App extends Component {
     fileHeader: {},
     fileBody: {},
     fileUploaded: false,
+    requestHeader: {},
+    requestBody: {},
+    requestUploaded: false,
 
     //Query Results: Contains each query as an array 
     queryStorage: [],
@@ -50,6 +53,19 @@ class App extends Component {
 
   importStatus = (bool) => {
     this.setState({fileUploaded: bool})
+  }
+
+  requestHeader = (header) => {
+    this.setState({requestHeader: header})
+  }
+
+  // Change the successful request's header state when request comes back
+  requestBody = (body) => {
+    this.setState({requestBody: body})
+  }
+
+  requestStatus = (bool) => {
+    this.setState({requestUploaded: bool})
   }
 
   render()
@@ -86,6 +102,9 @@ class App extends Component {
           borough = {this.state.borough}
           addressNum = {this.state.addressNum}
           streetName = {this.state.streetName}
+          requestHeader = {this.requestHeader}
+          requestBody={this.requestBody}
+          requestStatus={this.requestStatus}
         />
 
       </div>
